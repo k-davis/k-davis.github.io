@@ -31,13 +31,27 @@ This project used:
 
 The original data was sourced from the [Carnegie Mellon University Graphics Lab Motion Capture Database](http://mocap.cs.cmu.edu/).
 
-### Work
-
 Check out the repo [here](https://github.com/k-davis/VR-Elbow-Inference).
+
+### Work
 
 Between August 2019 and May 2020, my work was overseen by faculty advisor Dr. Katherine Schroeder, whose assistance, insight, and ecouragement was invaluable.
 
 Over the course of the year, I built an overly complex data processor, a visualization tool to check if my processor worked, and a second visualization tool to see whether I had gaps in my data or to uncovered any unknown patterns in the data.
+
+#### Data Processor Verification Tool
+
+This tool simultaneously plays for comparison the unprocessed and processed motion capture data. With this tool I can ensure that the processor correctly normalized the data.
+![image](/images/data-proc-tester.jpg "Data Processor Verification Tool")
+
+#### Coverage Visualization Tool
+
+This visualization tool allows me to see all the available training data, and the relationship between joints within a region, and their correlated elbow/hand joints. A joint is represented by a single black point. We can see, in the visualization, that there are regions of low sampling and regions of high sampling. The joint type shown in each window can be switched so that hand joints are selected and their relationship with elbow joints can be seen on the right.
+
+Shown below, a region of elbow joints are selected and we can view the forearms defined by the selected joints and their correlated hand joints.
+
+![image](/images/coverage-viz-tool.jpg "Coverage Visualization Tool")
+_Here, a region of elbows can be selected in the Controller Window (left) and the hands/forearm locations are seen in the Viewer Window(right)._
 
 ### Results & Future Work
 

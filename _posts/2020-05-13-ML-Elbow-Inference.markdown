@@ -42,7 +42,7 @@ Over the course of the year, I built an overly complex data processor, a visuali
 #### Data Processor Verification Tool
 
 This tool simultaneously plays for comparison the unprocessed and processed motion capture data. With this tool I can ensure that the processor correctly normalized the data.
-![image]({{ site.url }}/images/data-proc-tester.JPG "Data Processor Verification Tool")
+![image]({{ site.url }}/images/data-proc-tester.jpg "Data Processor Verification Tool")
 
 #### Coverage Visualization Tool
 
@@ -50,7 +50,7 @@ This visualization tool allows me to see all the available training data, and th
 
 Shown below, a region of elbow joints are selected and we can view the forearms defined by the selected joints and their correlated hand joints.
 
-![image]({{ site.url }}/images/coverage-viz-tool.JPG "Coverage Visualization Tool")
+![image]({{ site.url }}/images/coverage-viz-tool.jpg "Coverage Visualization Tool")
 _Here, a region of elbows can be selected in the Controller Window (left) and the hands/forearm locations are seen in the Viewer Window(right)._
 
 ### Results & Future Work

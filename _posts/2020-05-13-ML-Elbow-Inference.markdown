@@ -3,6 +3,7 @@ layout: post
 title: "VR Elbow Inference"
 date: 2020-05-11 16:23:42 -0700
 permalink: /research/VR-Elbow-Inference
+excerpt: "Can machine learning be used to estimate a virtual reality user's elbow location?"
 ---
 
 ## If you only know where your head and hands are, where are your elbows?

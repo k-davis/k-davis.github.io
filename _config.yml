@@ -30,6 +30,7 @@ github_username: k-davis
 
 # Build settings
 theme: minima
+show_excerpts: true
 plugins:
   - jekyll-feed
 # Exclude from processing.
@@ -51,3 +52,4 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+

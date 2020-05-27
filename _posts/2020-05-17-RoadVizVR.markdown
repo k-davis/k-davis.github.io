@@ -3,6 +3,7 @@ layout: post
 title: "RoadVizVR - Senior Capstone"
 date: 2020-05-17 11:57:00 -0700
 permalink: /projects/RoadVizVR
+excerpt: "RoadVizVR helps bridge the communication gap between professional urban designers and lay people by presenting customizable roadway designs through virtual reality."
 ---
 
 ![image]({{ site.url }}/images/roadvizvr/overview.jpg "RoadVizVR Overview")

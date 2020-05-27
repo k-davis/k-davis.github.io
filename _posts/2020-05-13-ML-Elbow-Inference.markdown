@@ -62,8 +62,8 @@ So that's not too great, is it? I learned a lot along the way, but not the stuff
 
 Here's my goal right now:
 
-- Collect my own data (I originally used motion capture data from Carnegie Mellon University)
-- Rewrite my data processor - maybe Excel would be better than a massive Python script?
+- Collect my own data
+- Rewrite the data processor
 - Have better data coverage
 - Treat the data as time-series data when training
 - Build a visualization tool to analyze the model's outputs

@@ -12,3 +12,11 @@ Tools:
 
 - Unity
 - C#
+
+### [Markov Chain Name Generator]({{ site.url }}/projects/Markov-Chain-Name-Generator)
+
+This tool generate new names that follow the patterns found within real names.
+
+Tools:
+
+- C++

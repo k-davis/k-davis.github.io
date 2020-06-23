@@ -52,7 +52,7 @@ This visualization tool allows me to see all the available training data, and th
 Shown below, a region of elbow joints is selected and we can view the forearms defined by the selected joints and their correlated hand joints.
 
 ![image]({{ site.url }}/images/coverage-viz-tool.jpg "Coverage Visualization Tool")
-_Here, a region of elbows can be selected in the Controller Window (left) and the hands/forearm locations are seen in the Viewer Window(right)._
+_Here, a region of elbows can be selected in the Controller Window (left) and the hands/forearm locations are seen in the Viewer Window (right)._
 
 ### Results & Future Work
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>apollo</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="..\..\styles.css" />
+</head>
+<body>
+<p><a href="./homepage.html">&lt; back</a></p>
+<h1 id="the-apollo-project">The Apollo Project</h1>
+<figure>
+<img src="../images/Apollo/partially_smoothed.jpg"
+title="3d printed panels taped together and partially smoothed."
+alt="3d printed panels taped together and partially smoothed." />
+<figcaption aria-hidden="true">3d printed panels taped together and
+partially smoothed.</figcaption>
+</figure>
+<p>I am building a diagram of the flight path of Apollo 11. LEDs track
+the movement of the spacecraft in real time and blink to indicate
+moments of interest. You can also listen to the communications between
+the command module and ground control. A knob will allow for volume
+control and a button will cue to ‘launch’ the mission. I’ve been working
+on this project intermittently over the past year or two.</p>
+<p>The main panel is 3D printed, smoothed with an acrylic medium,
+covered with aluminum foil, and the grooves are inlaid with black paint.
+An ESP32 microcontroller lies in its gut, reluctantly programmed in
+C++.</p>
+<p>The circuit still lives on a breadboard, but is mostly done. After
+wrapping up a few final details, I’ll start soldering the final board
+and building a frame for the whole thing.</p>
+<h1 id="the-audio">The Audio</h1>
+<p>The audio for this project was manually scraped from the <a
+href="https://apolloinrealtime.org/11/">Apollo in Real Time</a> project.
+The team behind this project started with rough copies of the original
+audio, and made it sound remarkably clean. I did some additional work in
+Audacity, but my contribution is negligible.</p>
+<p>In total, there are about 200 hours of audio.</p>
+<h1 id="the-panel">The Panel</h1>
+<h2 id="design">Design</h2>
+<p>After a handful of thumbnail sketches and test 3d prints, I made a
+to-scale drawing on butcher paper and finalized the size and layout of
+various elements.</p>
+<h2 id="printing">Printing</h2>
+<figure>
+<img src="../images/Apollo/3d_print.jpg" title="A single printed piece."
+alt="A single printed piece." />
+<figcaption aria-hidden="true">A single printed piece.</figcaption>
+</figure>
+<p>I used Fusion360 to model the panels. Working in batches (and
+certainly without best practices in mind), I would draw a portion of the
+lines, and extrude them into recessions. The icons of the spacecraft
+were a particular pain. Not knowing how to reuse geometry, each was made
+from scratch. When everything looked good, I split it into six pieces so
+that it could fit on my 3d printer.</p>
+<h2 id="connecting">Connecting</h2>
+<p><img src="../images/Apollo/patchwork.jpg"
+title="Five of the six pieces together, laid atop a paper diagram."
+alt="Five of the six pieces together, laid atop a paper diagram." /> My
+original plan for connecting the pieces was for them to be connected
+with small rectangular tabs, which would fit into recesses. Frankly,
+this didn’t work at all, but electrical tape worked great.</p>
+<h2 id="smoothing">Smoothing</h2>
+<p><img src="../images/Apollo/print_close_up.jpg"
+title="A panel up close, showing the printing artifacts."
+alt="A panel up close, showing the printing artifacts." /> <img
+src="../images/Apollo/partially_smoothed.jpg"
+title="Partially smoothed connected panels."
+alt="Partially smoothed connected panels." /> My 3d printer is budget
+level, so the prints have a rough texture. After trialing several
+materials, I decided on using a thick acrylic paint medium to smooth the
+surface. It spreads easily without flowing like paint, doesn’t shrink as
+it dries, and can take a smooth finish.</p>
+<h2 id="foiling">Foiling</h2>
+<p><img src="../images/Apollo/glue.jpg" title="A piece covered in glue."
+alt="A piece covered in glue." /> <img
+src="../images/Apollo/foiled_ungrooved.jpg"
+title="A piece covered in foil, without the grooves recessed. Outlines of the grooves can be seen nonetheless."
+alt="A piece covered in foil, without the grooves recessed. Outlines of the grooves can be seen nonetheless." />
+<img src="../images/Apollo/grooved.jpg"
+title="A foiled piece, with grooves recessed."
+alt="A foiled piece, with grooves recessed." /></p>
+<p>Once smoothed and lightly sanded, I covered the entire thing in Mod
+Podge glue, and laid a sheet of Costco-sized aluminum foil over top.
+Once dried, I used the back of a paintbrush to lightly push the foil
+into the grooves. To my surprise, the foil moved easily and never
+tore.</p>
+<h2 id="inking">Inking</h2>
+<p>I mixed my best black paint and Mod Podge to get a black paste, and
+used that to fill in the grooves. I would messily paint over the lines,
+then wipe away the excess on the raise surfaces.</p>
+<p>A few thoughts of hindsight here: * Using a cheaper, less pigmented
+paint would have aided in wiping up the excess paint * Dried paint can
+be scraped away, allowing more touch ups. Dried Mod Podge is hard and is
+very difficult to scrape. The quality of some of the lines suffered from
+not being able to clean them up.</p>
+<h2 id="sealing">Sealing</h2>
+<p><img src="../images/Apollo/partially_sealed.jpg"
+title="A panel partially sealed with Mod Podge, showing the transition from dried sealant, wet sealant, and unsealed foil."
+alt="A panel partially sealed with Mod Podge, showing the transition from dried sealant, wet sealant, and unsealed foil." />
+To prevent any scuffs of the ink, or tearing of the foil, I covered it
+with one last layer of Mod Podge.</p>
+<figure>
+<img src="../images/Apollo/finished_plate.jpg"
+title="The finished panel." alt="The finished panel." />
+<figcaption aria-hidden="true">The finished panel.</figcaption>
+</figure>
+<h1 id="the-circuit">The Circuit</h1>
+<p>The circuit currently sits on my workspace as a mess of wires
+bouncing around a few breadboards. There are a few more additions to the
+code before I start soldering everything together.</p>
+<h1 id="the-frame">The Frame</h1>
+<p>I’ve barely even thought about the frame so far. 😁</p>
+</body>
+</html>

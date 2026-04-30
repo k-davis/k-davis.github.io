@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>SimulationLoD</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="..\..\..\styles.css" />
+</head>
+<body>
+<p><a href="../homepage.html">&lt; back</a></p>
+<h1 id="notes-on-simulation-level-of-detail">Notes on <em>Simulation
+Level-Of-Detail</em></h1>
+<p><em>October 8, 2025</em></p>
+<p>This page is a summary of my notes on Stephen Chenney’s paper <a
+href="https://pages.cs.wisc.edu/~schenney/research/culling/chenney-gdc2001.pdf"><em>Simulation
+Level-Of-Detail</em></a>, for the sake of my future self as well as for
+the chance visitor.</p>
+<p>My end goal is to develop a language that allows for level-of-detail
+(LOD) execution. In the same way that video games have LOD settings for
+graphics or physics, I’d like to apply the concept to how a program
+executes. A single program could be executed with a low, medium, or high
+resolution.</p>
+<p>For example, imagine a pathfinding algorithm that provides driving
+directions:</p>
+<ul>
+<li>At the highest level of detail, it would provide directions that
+specify exactly which lane to drive in and exactly with roads and turns
+to take.</li>
+<li>At a moderate level of detail, it would output the major freeways,
+put omits specific.</li>
+<li>At a low level of detail, the instructions would be as simple as “go
+north for 30 minutes, then west for 10”.</li>
+</ul>
+<p>Each of these sets of instructions represent the same information,
+but at different degrees of specificity.</p>
+<h2 id="overview">Overview</h2>
+<p>This paper demonstrates LOD execution applied to simulated vehicle
+driving in a city.</p>
+<p>There are a number of challenges to a system like this and some of
+these problems are introduced in this paper without getting bogged down
+in excess detail and perfectionism.</p>
+<p>Briefly, these challenges include:</p>
+<ul>
+<li>Resource contention</li>
+<li>Identifying essential behavior</li>
+<li>Designing proxies</li>
+</ul>
+<p>For its wide-but-shallow coverage of the domain, this paper is an
+excellent introduction to the goal and obstacles around LOD
+execution.</p>
+<h2 id="discrete-event-simulation">Discrete Event Simulation</h2>
+<p>In order to transform and relate concepts or states across different
+levels of detail, they must be well defined in code. To define events in
+this manner, the author uses <a
+href="https://en.wikipedia.org/wiki/Discrete-event_simulation">Discrete
+Event Simulation (DES)</a>.</p>
+<p>Consider the alternative to discrete behavior as something that is
+plainly observable, but cannot be concisely defined. For example, in the
+<a href="https://en.wikipedia.org/wiki/Boids">Boids algorithm</a>,
+although we can clearly observe flocking, it is not discrete. It would
+not be possible to define an <code>IsFlocking</code> value for the birds
+(barring some mysterious AI solution). For this reason, we cannot
+<em>operate</em> with this behavior. We cannot group the birds into
+flocks, identify those that fly alone, or otherwise rely on this
+information.</p>
+<p>The primary use of DES in this paper is for the management of
+vehicles’s location and movement. Although vehicles within line of sight
+have traditional continuous movement, all others have their movement
+modeled with discrete events. These events contain only essential
+information. There is only the times for entering and exiting cells of a
+quadtree, which models the city’s area.</p>
+<h2 id="designing-proxies">Designing Proxies</h2>
+<p>The continuous-motion cars have a set of behaviors which are deemed
+essential. These are behaviors or qualities that the author has decided
+must be preserved in the lower resolution level of detail. These traits
+are not emergent or automatically occurring. They are functional
+requirements of the system.</p>
+<p>The lower resolution behaviors are implemented via a <em>proxy</em>,
+an approximation of an event or behavior. The design process of a proxy
+for movement needs to ensure that certain desired behaviors are
+preserved. Anything else can be dropped. The author chose travel time as
+being the value which best characterizes the base simulation’s behavior.
+And so, the proxy’s implementation must ensure that the simplified
+driving model produces a similar travel time as the base simulation.</p>
+<h2 id="resource-contention">Resource Contention</h2>
+<p>Two vehicles cannot occupy the same physical space. As vehicles pass
+through an intersection, they must be mindful to avoid colliding. We
+would consider this ‘resource contention,’ since the vehicles must take
+turns ‘using the resource’ of the intersection.</p>
+<p>In the base simulation, the vehicles have special behavior for
+real-time collision avoidance. This behavior is not scalable to tens of
+thousands of vehicles, so an approximation must be made for the proxy.
+The proxy simulates this by using a collection of queues. The queues
+allow for the preservation of the time delay caused by waiting, but
+dropping the specifics of how the vehicles manuever around each other.
+The essential characteristics are preserved, and computational costs are
+reduced.</p>
+<h2 id="final-thoughts-and-going-forward">Final Thoughts and Going
+Forward</h2>
+<p>This paper is valuable as a means to encounter the breadth of the
+concepts required for LOD execution. If and when I step away from this
+project, I would intend for this to be how I reenter the domain. It can
+onboard as well as remind what the goal is.</p>
+</body>
+</html>

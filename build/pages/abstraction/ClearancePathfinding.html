@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ClearancePathfinding</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="..\..\..\styles.css" />
+</head>
+<body>
+<p><a href="../homepage.html">&lt; back</a></p>
+<h1
+id="notes-on-clearance-based-pathfinding-and-hierarchical-annotated-a-search">Notes
+on <em>Clearance-based Pathfinding and Hierarchical Annotated A*
+Search</em></h1>
+<p>This page is a summary of my notes from Daniel Harabor’s essay, <a
+href="https://web.archive.org/web/20190411040123/http://aigamedev.com/open/article/clearance-based-pathfinding/"><em>Clearance-based
+Pathfinding and Hierarchical Annotated A* Search</em></a>.</p>
+<p>tl;dr: In some cases, hierarchical pathfinding can be used to speed
+up the pathfinding processes without significant error. The hierarchy
+consists of general or abstract decisions derived from the true decision
+space.</p>
+<p>Here is an example of a maze and a simplified graph which provides
+equivalent pathfinding ability: <img
+src="../../images/ClearancePathfinding/grid-hierarchy.png"
+alt="A maze and a simplified graph which represents the same information." /></p>
+</body>
+</html>

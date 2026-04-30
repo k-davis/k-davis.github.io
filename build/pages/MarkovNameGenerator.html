@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>MarkovNameGenerator</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="..\..\styles.css" />
+</head>
+<body>
+<p><a href="./homepage.html">&lt; back</a></p>
+<h1 id="markov-chain-name-generator">Markov Chain Name Generator</h1>
+<p><em>May 28, 2020</em></p>
+<p>This program generates names that, although original, look and sound
+like they could be real names. By learning from over 4,000 names, the
+program recognizes common sequences of letters, then uses those patterns
+to generate the new names.</p>
+<h3 id="tools">Tools</h3>
+<p>This project was written in C++. The names were gathered from US
+Census data.</p>
+<p>Check out the repo <a
+href="https://github.com/k-davis/markov-chain-name-generator">here</a>.</p>
+<h3 id="what-are-markov-chains">What are Markov Chains?</h3>
+<p>Markov chains are a suprisingly simple form of unsupervised machine
+learning. A Markov chain is a collection of states which can be
+transitioned between probabilistically. A Markov chain can be
+represented by a directed graph, where each vertex is a state and each
+edge stores the probability of moving to the indicated state from the
+current state.</p>
+<p>If we wanted to predict the weather (let’s limit it to sunny,
+overcast, and rainy), we could use the probability of each state
+occuring to guess a day’s weather. Let’s say that there is a 50% chance
+for overcast, 30% for sunny, and 20% for rainy weather. We could pick a
+random number every day for our guess, but we could easily end up
+flipping back and forth between sunny and rainy. Sure, that
+<em>could</em> be accurate, but there is a relationship between
+yesterday’s weather and today’s. If we could incorporate today’s weather
+in our guess of tomorrow’s, we would get better results. Markov chains
+allow us to do that. Instead of knowing the chance of the weather on a
+day by day basis, we could record the weather one day, then what it
+changed to (if at all) on the next day. Markov chains store the
+probability of what happens next.</p>
+<p>Take a look <a href="https://setosa.io/ev/markov-chains/">here</a>,
+for a more detailed explanation.</p>
+<h3 id="ok-but-how-do-we-make-names">Ok, But How Do We Make Names</h3>
+<p>But before we get there, I’ll need to explain the idea of “orders”.
+With our weather predictor, what’s stopping us from using only today’s
+weather to predict tomorrow’s? Why can’t we use yesterday’s and today’s?
+Oh, but we can. We can look backwards as many states as we’d like. The
+number of states we look back is the order number. If have a model order
+of zero, we are just guessing each day. With a model order one, we use
+the previous state, and we can use the two most recent states with a
+model order of two.</p>
+<p>Back to the names. Instead of our states being weather, they are
+letters. Just as rain is likely to follow overcast weather, so too does
+a ‘u’ follow a ‘q’. But instead of picking the most likely next state
+given our previous states, as we might with our weather predictor, we
+can pick the next state according to how often that transition occurs in
+our data.</p>
+<p>If you take a peek at the second table down below, you may see the
+generated name “Mathewaldomanrickor”. Let’s try to figure out what names
+allowed this silly name to happen in the first place. One feature of the
+program allows the user to start with a specific string, in this case
+“Mathew”. And it’s built from a second order Markov model. So, to pick
+the next letter, we always look back exactly two letters. What names
+contain the sequence “ewa”? At least one must. <a
+href="https://github.com/k-davis/markov-chain-name-generator/blob/master/names.dat">Through
+the power of Ctrl+F</a>, I can say that “Dewayne”, “Steward”, and
+“Stewart” made the ‘a’ possible.</p>
+<p>Now let’s go a bit quicker:</p>
+<p><strong>MATHEW</strong></p>
+<p>st<strong>EWA</strong>rt</p>
+<p><strong>WAL</strong>lace</p>
+<p>don<strong>ALD</strong></p>
+<p>she<strong>LDO</strong>n</p>
+<p><strong>DOM</strong>enic</p>
+<p>That gives us “Mathewaldom” so far. Now this example doesn’t mean
+that, for example, only “Sheldon” has the sequence “LDO”. Many did, in
+fact. But since we are dealing with chance, all it takes is one instance
+of the sequence to make it possible.</p>
+<h3 id="example-names">Example Names</h3>
+<h4 id="outputs-from-model-orders">Outputs From Model Orders</h4>
+<table>
+<thead>
+<tr>
+<th>Order 1</th>
+<th>Order 2</th>
+<th>Order 3</th>
+<th>Order 4</th>
+<th>Order 5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cheshe</td>
+<td>Doustacey</td>
+<td>Mart</td>
+<td>Darion</td>
+<td>Christofer</td>
+</tr>
+<tr>
+<td>Lert</td>
+<td>Seph</td>
+<td>Ole</td>
+<td>Cristan</td>
+<td>Florenzo</td>
+</tr>
+<tr>
+<td>Je</td>
+<td>Gradon</td>
+<td>Barth</td>
+<td>Landolph</td>
+<td>Hoberto</td>
+</tr>
+<tr>
+<td>Magr</td>
+<td>Wighnno</td>
+<td>Normando</td>
+<td>Howardo</td>
+<td>Teodore</td>
+</tr>
+<tr>
+<td>Cquite</td>
+<td>Jareif</td>
+<td>Donner</td>
+<td>Bernandon</td>
+<td>Kristoper</td>
+</tr>
+<tr>
+<td>H</td>
+<td>Trosephirvin</td>
+<td>Feltonelliseo</td>
+<td>Gustin</td>
+<td>Errold</td>
+</tr>
+<tr>
+<td>Ryamian</td>
+<td>Chew</td>
+<td>Than</td>
+<td>Thur</td>
+<td>Quentino</td>
+</tr>
+<tr>
+<td>Krdrooccks</td>
+<td>Ne</td>
+<td>Lawren</td>
+<td>Rudolfo</td>
+<td>Brandell</td>
+</tr>
+<tr>
+<td>Bavera</td>
+<td>Fau</td>
+<td>Scoe</td>
+<td>Darrett</td>
+<td>Sterlin</td>
+</tr>
+<tr>
+<td>Lde</td>
+<td>Laineldo</td>
+<td>Arlannon</td>
+<td>Bennis</td>
+<td>Christobal</td>
+</tr>
+</tbody>
+</table>
+<p>As we increase the model order, names start to make more sense. Names
+generated from a first order model only look back one letter, so only
+two character sequences are pulled from real names. For a fifth order
+model, on the other hand, every sequence of five letters comes from a
+real name.</p>
+<h4 id="output-from-a-starting-string">Output From a Starting
+String</h4>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 30%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Starter String</th>
+<th>Order 2</th>
+<th>Order 3</th>
+<th>Order 4</th>
+<th>Order 5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“E”</td>
+<td>Elmans <br> Ez</td>
+<td>Emilard <br> Earnollina</td>
+<td>Emers <br> Emiley</td>
+<td>Emmanuela <br> Evangel</td>
+</tr>
+<tr>
+<td>“Lar”</td>
+<td>Lard <br> Larfid</td>
+<td>Lario <br> Larey</td>
+<td>Larryl</td>
+<td>-</td>
+</tr>
+<tr>
+<td>“Mathew”</td>
+<td>Mathewil <br> Mathewaldomanrickor</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>At some point, we don’t have enough names to generate something new.
+A fifth order name that starts with “Mathew” needs at least one name
+that contains the sequence “athew” plus one more letter. No name in the
+data set besides “Mathew” has such a sequence, so no name can be
+generated with those settings.</p>
+</body>
+</html>

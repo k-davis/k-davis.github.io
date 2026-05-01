@@ -1,4 +1,4 @@
-[< back](./homepage.html)
+[< back](../index.html)
 
 # Markov Chain Name Generator
 _May 28, 2020_

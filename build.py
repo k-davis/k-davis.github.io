@@ -6,7 +6,7 @@ shutil.rmtree('build')
 shutil.copytree('src', 'build')
 
 build_dir = Path('./build')
-css_path = Path('./styles.css')
+css_path = Path('./build/styles.css')
 
 for md_file in build_dir.glob('**/*.md'):
     html_filename = md_file.with_suffix('.html')

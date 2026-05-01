@@ -1,4 +1,4 @@
-[< back](../homepage.html)
+[< back](../../index.html)
 
 # Notes on _Simulation Level-Of-Detail_
 

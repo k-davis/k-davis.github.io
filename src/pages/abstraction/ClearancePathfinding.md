@@ -1,4 +1,4 @@
-[< back](../homepage.html)
+[< back](../../index.html)
 
 # Notes on _Clearance-based Pathfinding and Hierarchical Annotated A* Search_
 

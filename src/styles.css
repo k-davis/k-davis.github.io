@@ -1,0 +1,45 @@
+html {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body {
+    font-family: sans-serif;
+    width: 50%;
+    line-height: 1.5;
+}
+
+code {
+    background: #eee;
+    border-radius: 4px;
+    padding: 1px 2px;
+}
+
+/* figures will contain an img and figcaption */
+figure {
+    display: block;
+    width: 90%;
+    margin: 5%; 
+}
+
+figure img {
+    width: 100%;
+}
+
+figure figcaption {
+    font-style: italic;
+}
+
+/* select img that are not children of a figure*/
+img:not(figure img) {
+    display: block;
+    width: 90%;
+    margin: 5%;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        width: 90%;
+    }
+}

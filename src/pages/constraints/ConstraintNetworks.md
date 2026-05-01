@@ -1,4 +1,4 @@
-[< back](../homepage.html)
+[< back](../../index.html)
 
 # Notes on Sussman and Steele's [_Constraints - A Language for Expressing Almost-Hierarchical Descriptions_](https://dspace.mit.edu/bitstream/handle/1721.1/6312/AIM-502a.pdf)
 

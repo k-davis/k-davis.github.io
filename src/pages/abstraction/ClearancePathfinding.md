@@ -1,3 +1,7 @@
+---
+pagetitle: Clearance-based Pathfinding
+---
+
 [< back](../../index.html)
 
 # Notes on _Clearance-based Pathfinding and Hierarchical Annotated A* Search_

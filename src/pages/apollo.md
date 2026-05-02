@@ -1,3 +1,7 @@
+---
+pagetitle: The Apollo Project
+---
+
 [< back](../index.html)
 
 # The Apollo Project

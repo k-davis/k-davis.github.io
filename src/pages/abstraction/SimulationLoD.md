@@ -1,3 +1,7 @@
+---
+pagetitle: Simulation Level-of-Detail
+---
+
 [< back](../../index.html)
 
 # Notes on _Simulation Level-Of-Detail_

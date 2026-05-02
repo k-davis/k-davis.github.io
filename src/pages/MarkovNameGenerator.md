@@ -1,3 +1,7 @@
+---
+pagetitle: Markov Chain Name Generator
+---
+
 [< back](../index.html)
 
 # Markov Chain Name Generator

@@ -58,6 +58,7 @@ Once smoothed and lightly sanded, I covered the entire thing in Mod Podge glue, 
 I mixed my best black paint and Mod Podge to get a black paste, and used that to fill in the grooves. I would messily paint over the lines, then wipe away the excess on the raise surfaces.
 
 A few thoughts of hindsight here:
+
 * Using a cheaper, less pigmented paint would have aided in wiping up the excess paint
 * Dried paint can be scraped away, allowing more touch ups. Dried Mod Podge is hard and is very difficult to scrape. The quality of some of the lines suffered from not being able to clean them up.
 
